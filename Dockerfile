@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 RUN npx prisma generate
-RUN npx prisma db push
+RUN npx prisma db push --force-reset
 
 EXPOSE 3000
 CMD [ "npm", "run", "start:dev"]
