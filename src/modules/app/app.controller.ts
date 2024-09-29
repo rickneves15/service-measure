@@ -17,7 +17,12 @@ export class AppController {
   }
 
   @Get('upload')
-  upload(@Body() data: MeasureUploadDto) {
-    return this.measurementsService.create(data)
+  async upload(@Body() data: MeasureUploadDto) {
+    const imageUrl = await this.measurementsService.saveImage(data.image)
+    const measurementData = {
+      ...data,
+      image: imageUrl,
+    }
+    return this.measurementsService.create(measurementData)
   }
 }
