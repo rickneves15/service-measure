@@ -4,15 +4,16 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY prisma ./prisma/
+COPY .env ./
 
 RUN npm install
+
+COPY --chown=app:app . /app
 
 COPY . .
 
 RUN npm run build
 
-RUN npx prisma generate
-RUN npx prisma db push --force-reset
 
 EXPOSE 3000
 CMD [ "npm", "run", "start:dev"]

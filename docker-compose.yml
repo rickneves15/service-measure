@@ -4,10 +4,21 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: app
-    environment:
-      - PORT=3000
+    env_file:
+      - .env
     ports:
       - 3000:3000
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /src
+          ignore:
+            - node_modules
+            - dist
+        - action: rebuild
+          path: package.json
+
     depends_on:
       - db
     networks:
