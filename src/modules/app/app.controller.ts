@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common'
 
+import { MeasureType } from '@/common/enums/measure-type'
 import { MeasurementsService } from '@/modules/measurements/measurements.service'
 
+import { ConfirmMeasure } from '../measurements/dtos/confirm-measure'
 import { AppService } from './app.service'
 import { MeasureUploadDto } from './dtos/upload.dto'
 
@@ -36,5 +46,21 @@ export class AppController {
       measure_value: value,
       measure_datetime: data.measure_datetime,
     })
+  }
+
+  @Patch('confirm')
+  confirm(@Body() data: ConfirmMeasure) {
+    return this.measurementsService.confirm(data)
+  }
+
+  @Get(':customerCode/list')
+  findOne(
+    @Param('customerCode') customerCode: string,
+    @Query('measure_type') measureType: MeasureType,
+  ) {
+    return this.measurementsService.findByCustomerCode(
+      customerCode,
+      measureType,
+    )
   }
 }
