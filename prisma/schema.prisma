@@ -14,13 +14,13 @@ datasource db {
 }
 
 model Measurement {
-  meansure_uuid     String          @id @default(uuid())
-  customer_code     String
-  image_url         String
-  measure_type      MeasurementType
-  measure_value     String
-  has_confirmed     Boolean         @default(false)
-  meansure_datatime DateTime        @default(now()) @db.Date
+  measure_uuid     String          @id
+  customer_code    String
+  image_url        String
+  measure_type     MeasurementType
+  measure_value    String
+  has_confirmed    Boolean         @default(false)
+  measure_datetime DateTime        @default(now()) @db.Date
 
   @@map("measurements")
 }
