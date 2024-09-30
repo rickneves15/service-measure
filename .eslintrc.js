@@ -26,7 +26,7 @@ module.exports = {
       {
         newlinesBetween: 'always',
         groups: [
-          ['/^nest/', 'module', '/^@nestjs/'],
+          ['/^nest/', 'module', '/^@nestjs/', '/^@google/'],
           ['/^@/'],
           ['parent', 'sibling', 'index'],
         ],
