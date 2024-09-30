@@ -18,7 +18,7 @@ model Measurement {
   customer_code    String
   image_url        String
   measure_type     MeasurementType
-  measure_value    String
+  measure_value    Int
   has_confirmed    Boolean         @default(false)
   measure_datetime DateTime        @default(now()) @db.Date
 
