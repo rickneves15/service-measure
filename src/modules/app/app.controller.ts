@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 
 import { MeasurementsService } from '@/modules/measurements/measurements.service'
 
@@ -17,7 +17,7 @@ export class AppController {
     return this.appService.getHello()
   }
 
-  @Get('upload')
+  @Post('upload')
   async upload(@Body() data: MeasureUploadDto) {
     const { imageUrl, fileName } = await this.measurementsService.saveImage(
       data.image,
